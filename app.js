@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 require('dotenv').config();
 const cors = require("cors");
 // Import routes
-
+const categoryRoutes = require("./routes/category");
+const questionRoutes = require("./routes/question");
 // Calling express method
 const app = express();
 
@@ -20,6 +21,8 @@ mongoose.connect(process.env.DB)
 app.use(express.json());
 app.use(cors());
 // Routes
+app.use("/api", categoryRoutes);
+app.use("/api", questionRoutes);
 // Listening to port
 app.listen(PORT, () => {
     console.log(`Server is running at port: ${PORT}`);
